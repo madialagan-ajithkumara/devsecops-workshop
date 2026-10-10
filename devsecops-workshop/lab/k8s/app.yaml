@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: campus-events
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: campus-events
+  template:
+    metadata:
+      labels:
+        app: campus-events
+    spec:
+      containers:
+        - name: web
+          image: campus-events:IMAGE_TAG
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: campus-events
+spec:
+  selector:
+    app: campus-events
+  ports:
+    - port: 80
+      targetPort: 80

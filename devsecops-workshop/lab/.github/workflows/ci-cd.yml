@@ -1,0 +1,38 @@
+name: ci-cd
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Look for secrets
+        run: |
+          if grep -niE "(password|api[_-]?key|secret|token)[[:space:]]*[:=]" index.html; then
+            echo "Possible secret found. Remove it before merging."
+            exit 1
+          fi
+          echo "No secrets found."
+
+      - name: Build the container image
+        run: docker build -t campus-events:test .
+
+  cd:
+    needs: ci
+    if: github.event_name == 'push'
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the image inside minikube
+        run: minikube image build -t campus-events:${GITHUB_SHA::7} .
+
+      - name: Deploy to Kubernetes
+        run: |
+          sed "s|IMAGE_TAG|${GITHUB_SHA::7}|" k8s/app.yaml | kubectl apply -f -
+          kubectl rollout status deployment/campus-events --timeout=120s
