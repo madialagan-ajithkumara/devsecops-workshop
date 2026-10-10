@@ -20,7 +20,6 @@ You push code  ->  CI checks it  ->  Docker packs it  ->  CD deploys it  ->  The
 | 1 | [Install everything from scratch](docs/01-setup.md) | 45 to 60 min |
 | 2 | [Do the lab](docs/02-lab.md) | 60 min |
 | 3 | [Understand the words](docs/03-concepts.md) | 10 min read |
-| 4 | [Fix common errors](docs/04-troubleshooting.md) | when needed |
 
 ## What is in this repository
 
