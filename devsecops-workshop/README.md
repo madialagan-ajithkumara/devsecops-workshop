@@ -52,5 +52,7 @@ Security is a small check inside every step, not something done at the end.
 ## Facilitator
 
 Madialagan Ajith Kumara, DevOps and Platform Engineer at N-able. CKA and AWS Certified Solutions Architect.
+
 [LinkedIn](https://www.linkedin.com/in/ajithkumara-madialagan/)
+
 [YouTube] (https://www.youtube.com/@AkOpsLabs)
