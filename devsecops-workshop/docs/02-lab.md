@@ -109,6 +109,8 @@ It should print **Listening for Jobs**.
 Back in **Tab 1**:
 
 ```bash
+cd ~/cmapus-demo/k8s
+kubectl apply -f app.yaml
 cd ~/campus-demo
 git add .
 git commit -m "Add Dockerfile, Kubernetes and CI/CD"
